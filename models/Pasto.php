@@ -6,7 +6,7 @@ class Pasto {
     private $numero;
     private $tamanho;
     private $idRetiro;
-    
+
     function __construct($idPasto, $numero, $tamanho, $idRetiro) {
         $this->idPasto = $idPasto;
         $this->numero = $numero;
@@ -14,7 +14,7 @@ class Pasto {
         $this->idRetiro = $idRetiro;
     }
 
-        function getIdPasto() {
+    function getIdPasto() {
         return $this->idPasto;
     }
 
@@ -45,6 +45,5 @@ class Pasto {
     function setIdRetiro($idRetiro) {
         $this->idRetiro = $idRetiro;
     }
-
 
 }

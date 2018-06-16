@@ -4,13 +4,13 @@ class Fazenda {
 
     private $idFazenda;
     private $nome;
-    
+
     function __construct($idFazenda, $nome) {
         $this->idFazenda = $idFazenda;
         $this->nome = $nome;
     }
 
-        function getIdFazenda() {
+    function getIdFazenda() {
         return $this->idFazenda;
     }
 

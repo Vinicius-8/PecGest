@@ -1,12 +1,13 @@
 <?php
 
 class Lotacao {
+
     private $quantidade;
     private $genero;
     private $idIdade;
     private $idRebanho;
     private $idPasto;
-    
+
     function __construct($quantidade, $genero, $idIdade, $idRebanho, $idPasto) {
         $this->quantidade = $quantidade;
         $this->genero = $genero;
@@ -15,7 +16,6 @@ class Lotacao {
         $this->idPasto = $idPasto;
     }
 
-    
     function getQuantidade() {
         return $this->quantidade;
     }
@@ -55,6 +55,5 @@ class Lotacao {
     function setIdPasto($idPasto) {
         $this->idPasto = $idPasto;
     }
-
 
 }

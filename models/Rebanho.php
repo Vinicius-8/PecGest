@@ -4,13 +4,13 @@ class Rebanho {
 
     private $idRebanho;
     private $nome;
-    
+
     function __construct($idRebanho, $nome) {
         $this->idRebanho = $idRebanho;
         $this->nome = $nome;
     }
 
-        function getIdRebanho() {
+    function getIdRebanho() {
         return $this->idRebanho;
     }
 

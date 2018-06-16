@@ -11,7 +11,7 @@ class Transicao {
     private $idIdadeSaida;
     private $idIdadeEntrada;
     private $idTipoTransicao;
-    
+
     function __construct($idTransicao, $data, $quantidade, $idPastoSaida, $idPastoEntrada, $idRebanho, $idIdadeSaida, $idIdadeEntrada, $idTipoTransicao) {
         $this->idTransicao = $idTransicao;
         $this->data = $data;
@@ -24,7 +24,7 @@ class Transicao {
         $this->idTipoTransicao = $idTipoTransicao;
     }
 
-        function getIdTransicao() {
+    function getIdTransicao() {
         return $this->idTransicao;
     }
 

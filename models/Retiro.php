@@ -5,14 +5,14 @@ class Retiro {
     private $idRetiro;
     private $nome;
     private $idFazenda;
-    
+
     function __construct($idRetiro, $nome, $idFazenda) {
         $this->idRetiro = $idRetiro;
         $this->nome = $nome;
         $this->idFazenda = $idFazenda;
     }
 
-        function getIdRetiro() {
+    function getIdRetiro() {
         return $this->idRetiro;
     }
 
