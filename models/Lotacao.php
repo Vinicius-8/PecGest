@@ -7,6 +7,15 @@ class Lotacao {
     private $idRebanho;
     private $idPasto;
     
+    function __construct($quantidade, $genero, $idIdade, $idRebanho, $idPasto) {
+        $this->quantidade = $quantidade;
+        $this->genero = $genero;
+        $this->idIdade = $idIdade;
+        $this->idRebanho = $idRebanho;
+        $this->idPasto = $idPasto;
+    }
+
+    
     function getQuantidade() {
         return $this->quantidade;
     }

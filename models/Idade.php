@@ -5,8 +5,14 @@ class Idade {
     private $idIdade;
     private $faixaEtaria;
     private $unidadeAnimal;
+    
+    function __construct($idIdade, $faixaEtaria, $unidadeAnimal) {
+        $this->idIdade = $idIdade;
+        $this->faixaEtaria = $faixaEtaria;
+        $this->unidadeAnimal = $unidadeAnimal;
+    }
 
-    function getIdIdade() {
+        function getIdIdade() {
         return $this->idIdade;
     }
 

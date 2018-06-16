@@ -11,8 +11,20 @@ class Transicao {
     private $idIdadeSaida;
     private $idIdadeEntrada;
     private $idTipoTransicao;
+    
+    function __construct($idTransicao, $data, $quantidade, $idPastoSaida, $idPastoEntrada, $idRebanho, $idIdadeSaida, $idIdadeEntrada, $idTipoTransicao) {
+        $this->idTransicao = $idTransicao;
+        $this->data = $data;
+        $this->quantidade = $quantidade;
+        $this->idPastoSaida = $idPastoSaida;
+        $this->idPastoEntrada = $idPastoEntrada;
+        $this->idRebanho = $idRebanho;
+        $this->idIdadeSaida = $idIdadeSaida;
+        $this->idIdadeEntrada = $idIdadeEntrada;
+        $this->idTipoTransicao = $idTipoTransicao;
+    }
 
-    function getIdTransicao() {
+        function getIdTransicao() {
         return $this->idTransicao;
     }
 

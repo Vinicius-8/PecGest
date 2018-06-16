@@ -6,8 +6,15 @@ class Pasto {
     private $numero;
     private $tamanho;
     private $idRetiro;
+    
+    function __construct($idPasto, $numero, $tamanho, $idRetiro) {
+        $this->idPasto = $idPasto;
+        $this->numero = $numero;
+        $this->tamanho = $tamanho;
+        $this->idRetiro = $idRetiro;
+    }
 
-    function getIdPasto() {
+        function getIdPasto() {
         return $this->idPasto;
     }
 

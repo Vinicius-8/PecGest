@@ -5,6 +5,11 @@ class TipoTransicao {
     private $idTipoTransicao;
     private $nome;
 
+    function __construct($idTipoTransicao, $nome) {
+        $this->idTipoTransicao = $idTipoTransicao;
+        $this->nome = $nome;
+    }
+
     function getIdTipoTransicao() {
         return $this->idTipoTransicao;
     }
