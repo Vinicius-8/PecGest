@@ -1,6 +1,6 @@
 <?php
 
-class Fazend {
+class Fazenda {
 
     private $idFazenda;
     private $nome;
