@@ -23,7 +23,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img class="img" style="width: 5rem" src="../view/imgs/logo_pecgest_sf.png"></a>
+            <a class="navbar-brand" href="#"><img class="img" style="width: 4rem" src="../view/imgs/logo_pecgest_sf.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,10 +47,35 @@
         <div class="container center">
             <div class="row">
                 <h2 id="q">Fazendas</h2>
-                <a href="#" onclick="criarfazenda()"><img src="imgs/icn_add.png" id="add" style="width: 2rem"></a>
+                <a style="cursor:pointer" data-toggle="modal" data-target="#cadastroFazenda"><img src="imgs/icn_add.png" id="add" style="width: 2rem"></a>
             </div>
         </div>
-        
+
+        <!-- Modal -->
+        <div class="modal fade" id="cadastroFazenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cadastro de Fazenda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="nomeFazenda">Insira o nome da fazenda:</label>
+                        <input type="name" class="form-control" id="nomeFazenda" placeholder="Ex.: Fazenda Bom Jesus">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" >Cadastrar Fazenda</button>
+            </div>
+            </div>
+        </div>
+        </div>
         
 
         <!--  Botões que representam as fazendas -->
