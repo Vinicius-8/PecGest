@@ -6,6 +6,8 @@ include '../crud/Create.php';
 include '../crud/Delete.php';
 include '../crud/Update.php';
 include '../modelsDAO/FazendaDAO.php';
+include '../modelsDAO/PastoDAO.php';
+include '../modelsDAO/LotacaoDAO.php';
 $fazenda = new FazendaDAO();
 $A = $fazenda->selecionarFazenda("*", "", "");
 
@@ -61,7 +63,7 @@ $A = $fazenda->selecionarFazenda("*", "", "");
         </nav>
         
 
-            <form>
+        <form action="../scripts/criaLotacao.php">
                 <h2 style="margin:2rem">Entradas</h2>
                 <div class="form-group">
                     <label for="dataEnt">Data:</label>
@@ -86,14 +88,13 @@ $A = $fazenda->selecionarFazenda("*", "", "");
                 <div class="form-group">
                     <label>Pasto de Entrada</label>
                     <select class="form-control form-control-lg">
-                        <option></option>
                         <option>Opção 1</option>
                         <option>Opção 2</option>    
+                        
                     </select>
                 </div>  
 
                 <button type="submit" class="btn btn-primary">Registrar entrada</button>
-                
                 
             </form>
 

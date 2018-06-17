@@ -8,12 +8,14 @@ include '../crud/Delete.php';
 include '../crud/Update.php';
 include '../modelsDAO/RetiroDAO.php';
 include '../modelsDAO/FazendaDAO.php';
+
 $retiro = new Read();
 if(isset($_POST['id_fazenda'])):
 $id_fazenda =  $_POST['id_fazenda'];
 else:
-    $id_fazenda = 1;
+    $id_fazenda = 1;//apenas para exeplificação
 endif;
+
 $retiro->runRead("retiro","where id_fazenda = {$id_fazenda} ");
 $result = $retiro->getresult();
 $nomeFazenda = new FazendaDAO();
