@@ -16,7 +16,7 @@
            }
 
            function criarfazenda() {
-                alert("Aqui vai o código de criar fazenda!");
+              
            }
 
        </script>

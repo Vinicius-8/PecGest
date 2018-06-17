@@ -1,4 +1,6 @@
 <?php
+
+
 class Update extends conexaoBancodados {
     
     private $vals;    //valores a serem subistituidos na sql  
