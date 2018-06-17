@@ -128,7 +128,7 @@ $result = $retiro->getresult();
                            
                            var a = document.getElementById('numeroPasto').value;
                             if(a!=""){                  
-                                 document.write("<form id='criarPasto' action='../scripts/criarPasto.php' method='POST'> <input type='hidden' name='numero_pasto' value='"+a+"'> <input type='hidden' name='id_retiro' value='"+id_retiro+"'> </form>");
+                                 document.write("<form id='criarPasto' action='../scripts/criarPasto.php' method='POST'> <input type='hidden' name='numero_pasto' value='"+a+"'> <input type='hidden' name='id_retiro' value='"+id_retiro+"'> <input type='hidden' name='id_fazenda' value='"+<?= $_POST['id_fazenda']?>+"'></form>");
                                  document.getElementById("criarPasto").submit();
                              }
                              
