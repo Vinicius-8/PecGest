@@ -1,4 +1,6 @@
 <?php
+
+
 class Read extends ConexaoBancoDados {
 
    

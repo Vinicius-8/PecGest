@@ -1,7 +1,5 @@
 <?php
 
-include '../Load.php';
-
 class FazendaDAO {
 
     private $create;

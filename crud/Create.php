@@ -5,6 +5,8 @@
      * @author Vinicius
      */
 
+    
+
 class Create extends ConexaoBancodados {
 
     private $tbl; //tabela a inserir

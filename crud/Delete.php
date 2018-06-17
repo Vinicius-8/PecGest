@@ -5,6 +5,8 @@
  *
  * @author Vinicius
  */
+
+
 class Delete extends conexaoBancoDados {
     
    private $tbl;        // tabela

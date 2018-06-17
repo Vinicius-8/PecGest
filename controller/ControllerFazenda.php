@@ -1,13 +1,15 @@
 <?php
-include '../Load.php';
+include '../modelsDAO/FazendaDAO.php';
 
 class ControllerFazenda {
+    
     public function criarFazenda($nomeFazenda){
         $array = Array('nome'=>$nomeFazenda);
-        $fazenda = new FazendaDAO()->cadastrarFazenda($array);
+        $fazenda = new FazendaDAO();
+        $result = $fazenda->cadastrarFazenda($array);
         
-        if ($fazenda != 0):
-            echo "Fazenda cadastrada com sucesso!";
+        if ($result != 0):
+            echo "<script>alert('Não foi possivel cadastrar na fazenda@');</script>";
         endif;
     }
 }
