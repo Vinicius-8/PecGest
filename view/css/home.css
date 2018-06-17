@@ -31,6 +31,12 @@
 }
 
 .container {
-    margin-right: 11%;
-    align-content: flex-end;
+    margin-right: 11%;  
+    align-content: flex-end;        
+}
+
+/* Movimentações */
+
+.custom-select {
+    width: 40rem;   
 }
