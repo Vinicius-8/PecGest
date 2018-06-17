@@ -24,3 +24,17 @@ foreign key (id_retiro) references retiro(id) );
 
 
 select * from pasto;
+
+create table lotacao(
+id int not null auto_increment primary key,
+data_entrada date not null,
+quantidade int not null,
+id_rebanho varchar(99) not null,
+id_idade  int not null,
+id_pasto int not null,
+foreign key (id_pasto) references pasto(id),
+foreign key (id_rebanho) references rebanho(id),
+foreign key (id_idade) references idade(idade)
+);
+
+
