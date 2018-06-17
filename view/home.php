@@ -1,4 +1,14 @@
 <?php
+include '../configs/DataBanco.php';
+include '../crud/ConexaoBancoDados.php';
+include '../crud/Read.php';
+include '../crud/Create.php';
+include '../crud/Delete.php';
+include '../crud/Update.php';
+include '../modelsDAO/FazendaDAO.php';
+$fazenda = new FazendaDAO();
+$A = $fazenda->selecionarFazenda("*", "", "");
+
 
 ?>
 <!DOCTYPE html>
@@ -11,14 +21,18 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="css/home.css">
         <script>
-           function verfazenda(){
-               alert("<?php echo 'Ver fazenda';?>");
+           function verfazenda(idfazenda){
+               alert("Ver fazenda");
            }
 
            function criarfazenda() {
-              
-           }
+              var a = document.getElementById('nomeFazenda').value;
+              if(a!=""){                  
+                document.write("<form id='AA' action='../scripts/criarFazenda.php' method='POST'> <input type='hidden' name='nome' value='"+a+"'> </form>");
+                document.getElementById("AA").submit();
+              }
 
+           }
        </script>
     </head>
     <body>
@@ -71,20 +85,28 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" >Cadastrar Fazenda</button>
+                <button type="submit" class="btn btn-primary" onclick="criarfazenda()" >Cadastrar Fazenda</button>
             </div>
             </div>
         </div>
         </div>
         
 
-        <!--  Botões que representam as fazendas -->
+        <!--  Botões que representam as fazendas 
 
         <a href="#" class="btn btn-primary btn-lg active fazenda" role="button" onclick="verfazenda()">Fazenda A</a>
     
         <a href="#" class="btn btn-primary btn-lg active fazenda" role="button" aria-pressed="true">Fazenda B</a>
-
-        
+        -->
+        <?php
+        if(!empty($A)):
+            for ($i = 0;$i<count($A);$i++){
+                echo "<a href='#' class='btn btn-primary btn-lg active fazenda' role='button' onclick='verfazenda(".$A[$i]['id'].")'>".$A[$i]['nome']."</a>";
+            }
+        else:
+            echo "<p>Voce ainda nao tem fazendas</p>";
+        endif;
+        ?>
         
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -92,3 +114,4 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     </body>
 </html>
+

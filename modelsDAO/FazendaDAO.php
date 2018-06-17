@@ -15,6 +15,7 @@ class FazendaDAO {
     }
 
     public function cadastrarFazenda($array) {
+        var_dump($array);
         $this->create->runCreate("fazenda", $array);
         return $this->create->getresults();
     }
@@ -22,6 +23,7 @@ class FazendaDAO {
     public function selecionarFazenda($daft, $Termos, $vals) {
         $this->read->setDaft($daft);
         $this->read->runRead("fazenda", $Termos, $vals);
+        return $this->read->getresult();
     }
 
     public function deletarFazenda($id) {
