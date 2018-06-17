@@ -7,13 +7,17 @@ include '../crud/Create.php';
 include '../crud/Delete.php';
 include '../crud/Update.php';
 include '../modelsDAO/RetiroDAO.php';
+include '../modelsDAO/FazendaDAO.php';
 $retiro = new Read();
-
+if(isset($_POST['id_fazenda'])):
 $id_fazenda =  $_POST['id_fazenda'];
-
+else:
+    $id_fazenda = 1;
+endif;
 $retiro->runRead("retiro","where id_fazenda = {$id_fazenda} ");
 $result = $retiro->getresult();
-
+$nomeFazenda = new FazendaDAO();
+$nomeFazenda = $nomeFazenda->selecionarFazenda('*', "where id = {$id_fazenda}", null);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,7 +25,7 @@ $result = $retiro->getresult();
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, inicial-scale=1, shrink-to-fit=no" >
 
-        <title>Fazenda A</title>
+        <title><?= $nomeFazenda[0]['nome']?> </title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="css/home.css">
         </head>
@@ -56,7 +60,7 @@ $result = $retiro->getresult();
 
         <div class="container-fluid">
             <div class="row">
-                <h2 id="q">Fazenda A</h2>
+                <h2 id="q"><?= $nomeFazenda[0]['nome']?></h2>
                 <a style="cursor:pointer" class="col" data-toggle="modal" data-target="#cadastroRetiro"><img src="imgs/icn_add.png" id="add" style="width: 2rem"></a>
             </div>
         </div>
@@ -93,7 +97,7 @@ $result = $retiro->getresult();
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Pasto 1</h5>
+                <h5 class="modal-title" id="verPastoTitulo">Pasto 1</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -124,6 +128,7 @@ $result = $retiro->getresult();
                         function inserirPasto(){
                            
                            var a = document.getElementById('numeroPasto').value;
+                          
                             if(a!=""){                  
                                  document.write("<form id='criarPasto' action='../scripts/criarPasto.php' method='POST'> <input type='hidden' name='numero_pasto' value='"+a+"'> <input type='hidden' name='id_retiro' value='"+id_retiro+"'> <input type='hidden' name='id_fazenda' value='"+<?= $_POST['id_fazenda']?>+"'></form>");
                                  document.getElementById("criarPasto").submit();
@@ -151,7 +156,12 @@ $result = $retiro->getresult();
                 </div>
             </div>
         </div>
-        
+        <script>
+            function verPasto(p){
+                document.getElementById('verPastoTitulo').innerHTML = "Pasto "+p;
+            }
+        </script>
+           
 
         <!--  Botões que representam os pastos -->
         <?php
@@ -166,9 +176,9 @@ $result = $retiro->getresult();
                    
                    $retiro->runRead("pasto","where id_retiro = {$result[$i]['id']} ");
                     $res = $retiro->getresult();
-                  
                    for($j= 0; $j<(count($res));$j++){
-                       echo "<a href='#' class='btn btn-primary btn-lg active pasto' data-toggle='modal' data-target='#verPasto' role='button' onclick='verPasto()'>{$res[$j]['numero_pasto']}</a>";
+                       echo "<a href='#' class='btn btn-primary btn-lg active pasto' id='{$res[$j]['id']}' data-toggle='modal' data-target='#verPasto' role='button' onclick='verPasto({$res[$j]['numero_pasto']})'>{$res[$j]['numero_pasto']}</a>";
+                       echo "<script>document.getElementById('verPastoTitulo').innerHTML = 'Pasto {$res[$j]['numero_pasto']}';</script>";
                    }
                 echo "</div>";
                 echo "<button type='button' style='margin: 1rem' data-toggle='modal' data-target='#insercaoPasto' class='btn btn-secondary' onclick='sub({$result[$i]['id']})'>Inserir pasto</button>
