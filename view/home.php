@@ -61,7 +61,7 @@ $A = $fazenda->selecionarFazenda("*", "", "");
         <div class="container center">
             <div class="row">
                 <h2 id="q">Fazendas</h2>
-                <a style="cursor:pointer" data-toggle="modal" data-target="#cadastroFazenda"><img src="imgs/icn_add.png" id="add" style="width: 2rem"></a>
+                <a style="cursor:pointer" class="col" data-toggle="modal" data-target="#cadastFazenda"><img src="imgs/icn_add.png" id="addh" style="width: 2rem"></a>
             </div>
         </div>
 

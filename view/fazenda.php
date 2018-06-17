@@ -55,7 +55,7 @@
                 <form>
                     <div class="form-group">
                         <label for="nomeFazenda">Insira o nome do retiro:</label>
-                        <input type="name" class="form-control" id="nomeFazenda" placeholder="Ex.: Retiro A">
+                        <input type="name" class="form-control" id="nomeFazenda" onkeypress="" placeholder="Ex.: Retiro A">
                     </div>
                 </form>
             </div>

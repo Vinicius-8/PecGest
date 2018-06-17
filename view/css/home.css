@@ -4,7 +4,7 @@
     margin: 5%;
 }
 
-#add {
+#addh {
     float: right;
 }
 
@@ -24,6 +24,10 @@
     width: 5rem;
     height: 5rem;
     margin: 0.2rem;
+}
+
+#add {
+    float: right;
 }
 
 .container {
