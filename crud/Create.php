@@ -16,6 +16,7 @@ class Create extends ConexaoBancodados {
 
     /** @var PDO */
     private $conexao;
+    
     public function runCreate($tbl, array $datas) {//metodo principal de execução
         $this->tbl = (string) $tbl;
         $this->datas = $datas;
