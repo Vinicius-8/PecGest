@@ -78,11 +78,8 @@ $result = $retiro->getresult();
                 <form onsubmit="return false">
                     <div class="form-group">
                         <label for="nomeFazenda">Insira o nome do retiro:</label>
-<<<<<<< HEAD
-                        <input type="name" class="form-control" id="nomeFazenda" onkeypress="" placeholder="Ex.: Retiro A">
-=======
+
                         <input type="name" class="form-control" id="nomeRetiro" placeholder="Ex.: Retiro A">
->>>>>>> c70a2fc3dc3f16b047d93335d909ebcb6fc80af6
                     </div>
                 </form>
             </div>
@@ -169,10 +166,10 @@ $result = $retiro->getresult();
 
             echo "<div class='jumbotron center'>";
                echo "<div class='container'>";
-                   //echo  "<a href='#' class='btn btn-primary btn-lg active pasto' data-toggle='modal' data-target='#verPasto' role='button' onclick='verPasto()'>1</a>";
+                   
                    $retiro->runRead("pasto","where id_retiro = {$result[$i]['id']} ");
                     $res = $retiro->getresult();
-                    //var_dump($res);
+                  
                    for($j= 0; $j<(count($res));$j++){
                        echo "<a href='#' class='btn btn-primary btn-lg active pasto' data-toggle='modal' data-target='#verPasto' role='button' onclick='verPasto()'>{$res[$j]['numero_pasto']}</a>";
                    }
@@ -184,6 +181,7 @@ $result = $retiro->getresult();
             }
        
         ?>
+        <!--
         <div class="container">
             
                 <h4 >Retiro A</h4>                
@@ -197,7 +195,7 @@ $result = $retiro->getresult();
             </div>
             
         </div>
-
+-->
         
         <!-- <a href="#" class="btn btn-primary btn-lg active fazenda" role="button" onclick="verfazenda()">Fazenda A</a>
     
