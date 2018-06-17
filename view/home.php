@@ -104,7 +104,7 @@ $A = $fazenda->selecionarFazenda("*", "", "");
                 echo "<a href='#' class='btn btn-primary btn-lg active fazenda' role='button' onclick='verfazenda(".$A[$i]['id'].")'>".$A[$i]['nome']."</a>";
             }
         else:
-            echo "<p>Voce ainda nao tem fazendas</p>";
+            echo "<p style="text-align = 'center'">Voce ainda nao tem fazendas</p>";
         endif;
         ?>
         
