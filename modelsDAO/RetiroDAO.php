@@ -22,6 +22,7 @@ class RetiroDAO {
     public function selecionarRetiro($daft, $Termos, $vals) {
         $this->read->setDaft($daft);
         $this->read->runRead("retiro", $Termos, $vals);
+        return $this->read->getresult();
     }
 
     public function deletarRetiro($id) {

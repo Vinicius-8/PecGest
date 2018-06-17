@@ -21,15 +21,22 @@ $A = $fazenda->selecionarFazenda("*", "", "");
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="css/home.css">
         <script>
-           function verfazenda(idfazenda){
-               alert("Ver fazenda");
+           function verfazenda(id_fazenda){
+               
+              if(id_fazenda!=""){                  
+                document.write("<form id='verFazenda' action='./fazenda.php' method='POST'>\n\
+                    <input type='hidden' name='id_fazenda' value='"+id_fazenda+"'> \n\
+                     </form>");
+                document.getElementById("verFazenda").submit();
+                
+              }
            }
 
            function criarfazenda() {
               var a = document.getElementById('nomeFazenda').value;
               if(a!=""){                  
-                document.write("<form id='AA' action='../scripts/criarFazenda.php' method='POST'> <input type='hidden' name='nome' value='"+a+"'> </form>");
-                document.getElementById("AA").submit();
+                document.write("<form id='criarFazenda' action='../scripts/criarFazenda.php' method='POST'> <input type='hidden' name='nome' value='"+a+"'> </form>");
+                document.getElementById("criarFazenda").submit();
               }
 
            }
@@ -101,10 +108,10 @@ $A = $fazenda->selecionarFazenda("*", "", "");
         <?php
         if(!empty($A)):
             for ($i = 0;$i<count($A);$i++){
-                echo "<a href='#' class='btn btn-primary btn-lg active fazenda' role='button' onclick='verfazenda(".$A[$i]['id'].")'>".$A[$i]['nome']."</a>";
+                echo "<a class='btn btn-primary btn-lg active fazenda' role='button' onclick='verfazenda(".$A[$i]['id'].")'>".$A[$i]['nome']."</a>\n";
             }
         else:
-            echo "<p style="text-align = 'center'">Voce ainda nao tem fazendas</p>";
+            echo "<p style='text-align: center'>Você ainda não tem fazendas</p>";
         endif;
         ?>
         

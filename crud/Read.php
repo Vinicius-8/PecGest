@@ -31,6 +31,11 @@ class Read extends ConexaoBancoDados {
         $this->run();
     }
     
+    public function runRead2($Tabela, $Termos = null) {//metodo principal para a leitura
+        $this->select = "SELECT {$this->daft} FROM {$Tabela} {$Termos}";
+        $this->run();
+    }
+    
     public function getresult() {//obtem o resultado da consulta em forma de array
         return $this->result;
     }
