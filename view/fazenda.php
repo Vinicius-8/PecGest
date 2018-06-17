@@ -1,5 +1,19 @@
 <?php
 
+include '../configs/DataBanco.php';
+include '../crud/ConexaoBancoDados.php';
+include '../crud/Read.php';
+include '../crud/Create.php';
+include '../crud/Delete.php';
+include '../crud/Update.php';
+include '../modelsDAO/RetiroDAO.php';
+$retiro = new Read();
+
+$id_fazenda =  $_POST['id_fazenda'];
+
+$retiro->runRead("retiro","where id_fazenda = {$id_fazenda} ");
+$result = $retiro->getresult();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,6 +25,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <link rel="stylesheet" href="css/home.css">
         </head>
+         
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"><img class="img" style="width: 4rem" src="../view/imgs/logo_pecgest_sf.png"></a>
@@ -32,7 +47,15 @@
             </div>
         </nav>
 
-        
+        <script>
+            function criarRetiro() {
+              var a = document.getElementById('nomeRetiro').value;
+              if(a!=""){                  
+                document.write("<form id='criarRetiro' action='../scripts/criarRetiro.php' method='POST'> <input type='hidden' name='nome_retiro' value='"+a+"'> <input type='hidden' name='id_fazenda' value='"+<?= $_POST['id_fazenda']?>+"'> </form>");
+                document.getElementById("criarRetiro").submit();
+                }
+              } 
+        </script>   
 
         <div class="container-fluid">
             <div class="row">
@@ -52,16 +75,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form onsubmit="return false">
                     <div class="form-group">
                         <label for="nomeFazenda">Insira o nome do retiro:</label>
+<<<<<<< HEAD
                         <input type="name" class="form-control" id="nomeFazenda" onkeypress="" placeholder="Ex.: Retiro A">
+=======
+                        <input type="name" class="form-control" id="nomeRetiro" placeholder="Ex.: Retiro A">
+>>>>>>> c70a2fc3dc3f16b047d93335d909ebcb6fc80af6
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" >Cadastrar Retiro</button>
+                <button type="submit" class="btn btn-primary" onkeypress="criarRetiro()" onclick="criarRetiro(); this.form.submit()">Cadastrar Retiro</button>
             </div>
             </div>
         </div>
@@ -98,16 +125,34 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <script>
+                        var id_retiro = null;
+                        function inserirPasto(){
+                           
+                           var a = document.getElementById('numeroPasto').value;
+                            if(a!=""){                  
+                                 document.write("<form id='criarPasto' action='../scripts/criarPasto.php' method='POST'> <input type='hidden' name='numero_pasto' value='"+a+"'> <input type='hidden' name='id_retiro' value='"+id_retiro+"'> </form>");
+                                 document.getElementById("criarPasto").submit();
+                             }
+                             
+                        }
+                        
+                        function sub(id){
+                            id_retiro = id; 
+                           
+                        }
+                    </script>
                     <form>
                         <div class="form-group">
                             <label for="nomeFazenda">Número do pasto</label>
-                            <input type="name" class="form-control" id="nomeFazenda" placeholder="Ex.: 2">
+                            <input type="name" class="form-control" id="numeroPasto" placeholder="Ex.: 2">
                         </div>
                     </form>
                 </div>
+                    
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" >Inserir Pasto</button>
+                    <button type="submit" class="btn btn-primary" onclick="inserirPasto()">Inserir</button>
                 </div>
                 </div>
             </div>
@@ -115,36 +160,38 @@
         
 
         <!--  Botões que representam os pastos -->
+        <?php
+       
+            for($i = 0; $i<count($result); $i++ ){
+                echo "<div class='container'>";
+            
+                echo "<h4 >{$result[$i]['nome']}</h4>";
 
+            echo "<div class='jumbotron center'>";
+               echo "<div class='container'>";
+                   //echo  "<a href='#' class='btn btn-primary btn-lg active pasto' data-toggle='modal' data-target='#verPasto' role='button' onclick='verPasto()'>1</a>";
+                   $retiro->runRead("pasto","where id_retiro = {$result[$i]['id']} ");
+                    $res = $retiro->getresult();
+                    //var_dump($res);
+                   for($j= 0; $j<(count($res));$j++){
+                       echo "<a href='#' class='btn btn-primary btn-lg active pasto' data-toggle='modal' data-target='#verPasto' role='button' onclick='verPasto()'>{$res[$j]['numero_pasto']}</a>";
+                   }
+                echo "</div>";
+                echo "<button type='button' style='margin: 1rem' data-toggle='modal' data-target='#insercaoPasto' class='btn btn-secondary' onclick='sub({$result[$i]['id']})'>Inserir pasto</button>
+            </div>
+            
+        </div>";
+            }
+       
+        ?>
         <div class="container">
+            
                 <h4 >Retiro A</h4>                
 
             <div class="jumbotron center">                
                 <div class="container">                    
-                <a href="#" class="btn btn-primary btn-lg active pasto" data-toggle="modal" data-target="#verPasto" role="button" onclick="verPasto()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
-                <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
+                    <a href="#" class="btn btn-primary btn-lg active pasto" data-toggle="modal" data-target="#verPasto" role="button" onclick="verPasto()">1</a>
+                    <a href="#" class="btn btn-primary btn-lg active pasto" role="button" onclick="verfazenda()">1</a>
                 </div>
                 <button type="button" style="margin: 1rem" data-toggle="modal" data-target="#insercaoPasto" class="btn btn-secondary">Inserir pasto</button>
             </div>
